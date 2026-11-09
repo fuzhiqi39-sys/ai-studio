@@ -1,0 +1,15 @@
+name: daily-check
+
+on:
+  schedule:
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print date
+        run: date -u
+      - name: Check GitHub API
+        run: curl -sS https://api.github.com | head -c 500; echo
